@@ -17,6 +17,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 8px 0;
   &__title {
     font-family: $font-medium;
     font-size: 14px;
@@ -38,6 +39,7 @@ export default {
   line-height: 24px;
   padding: 8px 10px;
   outline: none;
+  cursor: pointer;
   &:blank {
     color: $font-color-idle;
   }

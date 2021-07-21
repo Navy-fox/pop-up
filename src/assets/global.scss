@@ -15,57 +15,6 @@
   font-family: $font-regular;
 }
 
-//.pop-up-title {
-//  font-family: $font;
-//  font-weight: bold;
-//  font-size: 18px;
-//  line-height: 24px;
-//  color: $font-color-black;
-//}
-//
-//.form-title {
-//  font-family: $font;
-//  font-weight: bold;
-//  font-size: 14px;
-//  line-height: 24px;
-//  color: $font-color-black;
-//}
-//
-//.link {
-//  font-family: $font;
-//  font-weight: bold;
-//  font-size: 14px;
-//  line-height: 24px;
-//  color: $font-color-red;
-//}
-//
-//.subtitle {
-//  font-family: $font;
-//  font-weight: normal;
-//  font-size: 12px;
-//  line-height: 16px;
-//  color: $font-color-light;
-//}
-//
-//.form-text {
-//  font-family: $font;
-//  font-weight: normal;
-//  font-size: 14px;
-//  line-height: 24px;
-//
-//  &--idle {
-//    color: $font-color-idle;
-//  }
-//
-//  &--focus {
-//    color: $font-color-black;
-//  }
-//
-//  &--disabled {
-//    color: $font-color-light;
-//  }
-//}
-
 .btn {
   height: 56px;
   width: 200px;
@@ -124,8 +73,7 @@
 }
 
 .btn-tags {
-  height: 36px;
-  width: 158px;
+  padding: 6px 12px;
   background: $button-color-gray;
   color: $font-color-light;
   font-size: 14px;
@@ -145,4 +93,18 @@
     color: $font-color-white;
   }
 
+}
+
+.btn-text {
+  font-family: $font-medium;
+  font-size: 14px;
+  line-height: 24px;
+  color: $color-warning;
+  cursor: pointer;
+  &:hover{
+    color: #F53A31;
+  }
+  &:active{
+    color: $color-warning;
+  }
 }
