@@ -2,13 +2,13 @@
 @import "system/variables";
 
 @font-face {
-  font-family: "LabGrotesque-R";
+  font-family: "LabGrotesque-Regular";
   src: url('/public/fonts/LabGrotesque-Regular.woff') format('woff');
 }
 
 @font-face {
-  font-family: "LabGrotesque-M";
-  src: url('/public/fonts/LabGrotesque-Medium.woff') format('woff');
+  font-family: "LabGrotesque-Bold";
+  src: url('/public/fonts/LabGrotesque-Bold.woff') format('woff');
 }
 
 * {
@@ -79,11 +79,11 @@
   cursor: pointer;
 
   &:hover {
-    background: #EA0029;
+    background: $color-warning;
   }
 
   &:active {
-    background: #EA0029;
+    background: $color-warning;
   }
 
   &:disabled {
