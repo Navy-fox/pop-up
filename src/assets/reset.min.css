@@ -1,0 +1,56 @@
+*, ::after, ::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+blockquote, body, dd, dl, figure, h1, h2, h3, h4, p {
+    margin: 0
+}
+
+ol[role=list], ul[role=list] {
+    list-style: none
+}
+
+html:focus-within {
+    scroll-behavior: smooth
+}
+
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5
+}
+
+a:not([class]) {
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto
+}
+
+img, picture {
+    max-width: 100%;
+    display: block
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+button, input, select, textarea {
+    font: inherit
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+* {
+    font-family: Gilroy, sans-serif
+}

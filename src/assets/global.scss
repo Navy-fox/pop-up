@@ -1,0 +1,143 @@
+@import "reset.min.css";
+@import "system/variables";
+
+@font-face {
+  font-family: "LabGrotesque-R";
+  src: url('/public/fonts/LabGrotesque-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: "LabGrotesque-M";
+  src: url('/public/fonts/LabGrotesque-Medium.woff') format('woff');
+}
+
+* {
+  font-family: $font-regular;
+}
+
+//.pop-up-title {
+//  font-family: $font;
+//  font-weight: bold;
+//  font-size: 18px;
+//  line-height: 24px;
+//  color: $font-color-black;
+//}
+//
+//.form-title {
+//  font-family: $font;
+//  font-weight: bold;
+//  font-size: 14px;
+//  line-height: 24px;
+//  color: $font-color-black;
+//}
+//
+//.link {
+//  font-family: $font;
+//  font-weight: bold;
+//  font-size: 14px;
+//  line-height: 24px;
+//  color: $font-color-red;
+//}
+//
+//.subtitle {
+//  font-family: $font;
+//  font-weight: normal;
+//  font-size: 12px;
+//  line-height: 16px;
+//  color: $font-color-light;
+//}
+//
+//.form-text {
+//  font-family: $font;
+//  font-weight: normal;
+//  font-size: 14px;
+//  line-height: 24px;
+//
+//  &--idle {
+//    color: $font-color-idle;
+//  }
+//
+//  &--focus {
+//    color: $font-color-black;
+//  }
+//
+//  &--disabled {
+//    color: $font-color-light;
+//  }
+//}
+
+.btn {
+  height: 56px;
+  width: 200px;
+  background: $button-color-red;
+  box-shadow: 0 0 24px rgba(234, 0, 41, 0.33);
+  border-radius: 6px;
+  font-family: $font-medium;
+  font-size: 16px;
+  line-height: 24px;
+  color: $font-color-white;
+  cursor: pointer;
+
+  &:hover {
+    background: #EA0029;
+  }
+
+  &:active {
+    background: #EA0029;
+  }
+
+  &:disabled {
+    background: #BEC5CC;
+    border: none;
+  }
+
+  &--invert {
+    border: 1px solid $font-color-white;
+    background: none;
+    box-shadow: none;
+
+    &:hover {
+      background: #FFFFFF;
+      color: $font-color-black;
+      border: none;
+    }
+
+    &:active {
+      background: #FFFFFF;
+      color: $font-color-black;
+      border: none;
+    }
+
+    &:disabled {
+      background: #BEC5CC;
+      border: none;
+    }
+  }
+  @media (max-width: $screen-mobile) {
+    height: 40px;
+  }
+}
+
+.btn-tags {
+  height: 36px;
+  width: 158px;
+  background: $button-color-gray;
+  color: $font-color-light;
+  font-size: 14px;
+  line-height: 24px;
+  cursor: pointer;
+  border-radius: 50px;
+  &--active {
+    background: $button-color-red;
+    color: $font-color-white;
+  }
+  &:hover {
+    background: #DFE3E6;
+  }
+
+  &:active {
+    background: $button-color-red;
+    color: $font-color-white;
+  }
+
+}
