@@ -92,9 +92,11 @@
   }
 
   &--invert {
+    width: 198px;
     border: 1px solid $font-color-white;
     background: none;
     box-shadow: none;
+
 
     &:hover {
       background: #FFFFFF;
@@ -114,7 +116,10 @@
     }
   }
   @media (max-width: $screen-mobile) {
+    font-size: 12px;
+    line-height: 16px;
     height: 40px;
+    width: 150px;
   }
 }
 

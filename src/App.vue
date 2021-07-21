@@ -1,13 +1,7 @@
 <template>
   <div id="app">
-    <input-wrapper>
-      <input type="text" placeholder="Введите данные" class="input" v-model="text">
-    </input-wrapper>
-    <check-box-wrapper>
-      <input type="checkbox" disabled>
-    </check-box-wrapper>
-    <button class="btn-tags">
-      Кнопка
+    <button class="btn btn--invert">
+      Налоговый вычет
     </button>
   </div>
 </template>
@@ -15,14 +9,9 @@
 <script>
 
 
-import InputWrapper from "./components/input-wrapper";
-import CheckBoxWrapper from "./components/check-box-wrapper";
+
 export default {
   name: 'App',
-  components: {CheckBoxWrapper, InputWrapper},
-  data: () => ({
-    text: ''
-  })
 }
 </script>
 
@@ -35,5 +24,6 @@ export default {
   gap: 20px;
   justify-content: center;
   align-items: center;
+  background: $bg-color-red;
 }
 </style>
