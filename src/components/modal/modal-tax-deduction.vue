@@ -90,12 +90,6 @@ export default {
         this.deductionAmounts = arr
       }
     },
-    defaultCloseActions() {
-      this.isOpen = false
-      this.tagValue = 'payment'
-      this.payday = ''
-      this.deductionAmounts = []
-    },
     sendForm() {
       this.$v.$touch()
       if (!this.$v.$invalid) {
