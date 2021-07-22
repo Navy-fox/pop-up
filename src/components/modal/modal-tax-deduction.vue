@@ -49,7 +49,7 @@ export default {
   &__subtitle {
     font-size: 14px;
     line-height: 24px;
-    color: $font-color-light;
+    color: $color-light;
     padding: 16px 0;
   }
   &__tags-box {

@@ -2,13 +2,13 @@
 @import "system/variables";
 
 @font-face {
-  font-family: "LabGrotesque-Regular";
-  src: url('/public/fonts/LabGrotesque-Regular.woff') format('woff');
+  font-family: "LabGrotesqueRegular";
+  src: url('/public/fonts/LabGrotesqueRegular.woff') format('woff');
 }
 
 @font-face {
-  font-family: "LabGrotesque-Bold";
-  src: url('/public/fonts/LabGrotesque-Bold.woff') format('woff');
+  font-family: "LabGrotesqueMedium";
+  src: url('/public/fonts/LabGrotesqueMedium.woff') format('woff');
 }
 
 * {
@@ -24,7 +24,7 @@
   font-family: $font-medium;
   font-size: 16px;
   line-height: 24px;
-  color: $font-color-white;
+  color: $color-white;
   cursor: pointer;
 
   &:hover {
@@ -42,20 +42,20 @@
 
   &--invert {
     width: 198px;
-    border: 1px solid $font-color-white;
+    border: 1px solid $color-white;
     background: none;
     box-shadow: none;
 
 
     &:hover {
       background: #FFFFFF;
-      color: $font-color-black;
+      color: $color-black;
       border: none;
     }
 
     &:active {
       background: #FFFFFF;
-      color: $font-color-black;
+      color: $color-black;
       border: none;
     }
 
@@ -75,14 +75,14 @@
 .btn-tags {
   padding: 6px 12px;
   background: $button-color-gray;
-  color: $font-color-light;
+  color: $color-light;
   font-size: 14px;
   line-height: 24px;
   cursor: pointer;
   border-radius: 50px;
   &--active {
     background: $button-color-red;
-    color: $font-color-white;
+    color: $color-white;
   }
   &:hover {
     background: #DFE3E6;
@@ -90,7 +90,7 @@
 
   &:active {
     background: $button-color-red;
-    color: $font-color-white;
+    color: $color-white;
   }
 
 }

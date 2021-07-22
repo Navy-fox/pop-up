@@ -41,19 +41,19 @@ export default {
   outline: none;
   cursor: pointer;
   &:blank {
-    color: $font-color-idle;
+    color: $color-idle;
   }
-  color: $font-color-black;
+  color: $color-black;
   &:hover {
     border: 1px solid #000000;
   }
   &:focus {
-    color: $font-color-black;
+    color: $color-black;
   }
 
   &:disabled {
     border: 1px solid #808080;
-    color: $font-color-light;
+    color: $color-light;
     background: none;
   }
   &--error {
