@@ -3,7 +3,7 @@
     <slot></slot>
     <!--    <input type="checkbox">-->
     <span class="check-box-wrapper__box"></span>
-    <span>{{text}}</span>
+    <span class="check-box-wrapper__text" v-html="text"></span>
   </label>
 </template>
 
@@ -27,6 +27,11 @@ export default {
   cursor: pointer;
   padding-bottom: 16px;
   border-bottom: 1px solid #DFE3E6;
+  &__text {
+    span{
+      color: $color-light;
+    }
+  }
   input[type=checkbox] {
     position: absolute;
     width: 1px;

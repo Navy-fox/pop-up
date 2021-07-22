@@ -8,7 +8,7 @@
         от своего официального годового дохода.</p>
       <input-wrapper
         :error="($v.payday.$dirty && !$v.payday.required) ? 'Поле обязательно для заполнения' : ''"
-        >
+      >
         <input
           type="number"
           class="input"
@@ -24,7 +24,7 @@
         <check-box-wrapper
           v-for="(item, key) in deductionAmounts"
           :key="key"
-          :text="`${item} рублей в ${key + 1}-ый год`"
+          :text="`${numberWithCommas(item)} ${numRuble(item, ruble)} <span >${numPrerosition(key +1, preposition)} ${key + 1}${numSuffix(key + 1, suffix)} год</span>`"
         >
           <input type="checkbox">
         </check-box-wrapper>
@@ -65,11 +65,14 @@ export default {
       tagValue: 'payment',
       payday: '',
       homePrice: 2_000_000,
-      deductionAmounts: []
+      deductionAmounts: [],
+      ruble: ['рубль', 'рубля', 'рублей'],
+      preposition: ['в', 'во'],
+      suffix: ['-ый', '-ой', '-ий']
     }
   },
   computed: {
-    maxDeductionAmount(){
+    maxDeductionAmount() {
       const result = this.homePrice * 0.13
       return result > 260_000 ? 260_000 : result
     }
@@ -85,7 +88,7 @@ export default {
     },
     calcDeductionAmount() {
       this.$v.$touch()
-      if (!this.$v.$invalid){
+      if (!this.$v.$invalid) {
         const arr = [];
         let maxPayment = this.payday * 12 * 0.13
         let deductionAmount = this.maxDeductionAmount
@@ -101,6 +104,28 @@ export default {
       if (!this.$v.$invalid) {
         this.confirm()
       }
+    },
+    numberWithCommas(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    },
+    numRuble(value, words) {
+      value = value % 100
+      let num = value % 10
+      if (value >= 10 && value <= 20) return words[2]
+      if (num > 1 && num < 5) return words[1]
+      if (num === 1) return words[0]
+      return words[2]
+    },
+    numPrerosition(value, words) {
+      if (value === 2) return words [1]
+      return words[0]
+    },
+    numSuffix(value, words) {
+      let num = value % 10
+      if (value >= 10 && value <= 20) return words[0]
+      if (num === 1 || num === 4 || num === 5 || num === 9) return words[0]
+      if (num === 2 || num === 6 || num === 7 || num === 8) return words[1]
+      if (num === 3) return words[2]
     }
   }
 }
@@ -168,7 +193,8 @@ export default {
     flex-direction: column;
     gap: 16px;
   }
-  &__text{
+
+  &__text {
     font-weight: bold;
   }
 }
