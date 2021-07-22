@@ -9,8 +9,14 @@
       <input-wrapper
         :error="($v.payday.$dirty && !$v.payday.required) ? 'Поле обязательно для заполнения' : ''"
         >
-        <input type="number" class="input" placeholder="Введите данные" v-model.number="payday" @input="$v.$touch()"
-               :class="($v.payday.$dirty && !$v.payday.required) ? 'input--error' : ''">
+        <input
+          type="number"
+          class="input"
+          placeholder="Введите данные"
+          v-model.number="payday"
+          @keydown.enter="calcDeductionAmount"
+          @input="$v.$touch()"
+          :class="($v.payday.$dirty && !$v.payday.required) ? 'input--error' : ''">
       </input-wrapper>
       <p class="btn-text modal-tax-deduction__btn-text" @click="calcDeductionAmount">Рассчитать</p>
       <div class="modal-tax-deduction__checkbox">
@@ -84,9 +90,9 @@ export default {
         let maxPayment = this.payday * 12 * 0.13
         let deductionAmount = this.maxDeductionAmount
         for (let i = 0; i < Math.floor(deductionAmount / maxPayment); i++) {
-          arr.push(maxPayment.toFixed(2))
+          arr.push(maxPayment.toFixed(0))
         }
-        arr.push((deductionAmount % maxPayment).toFixed(2))
+        arr.push((deductionAmount % maxPayment).toFixed(0))
         this.deductionAmounts = arr
       }
     },
