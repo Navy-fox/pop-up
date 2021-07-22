@@ -28,7 +28,8 @@ export default {
   height: 100vh;
   background: $bg-color-grey;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-top: 120px;
   overflow-y: auto;
 

@@ -80,19 +80,20 @@
   line-height: 24px;
   cursor: pointer;
   border-radius: 50px;
-  &--active {
-    background: $button-color-red;
-    color: $color-white;
-  }
   &:hover {
     background: #DFE3E6;
   }
-
   &:active {
     background: $button-color-red;
     color: $color-white;
   }
-
+  &--active {
+    background: $button-color-red;
+    color: $color-white;
+    &:hover {
+      background: $button-color-red;
+    }
+  }
 }
 
 .btn-text {

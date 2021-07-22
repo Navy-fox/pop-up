@@ -1,6 +1,7 @@
 <template>
   <label class="check-box-wrapper">
     <slot></slot>
+    <!--    <input type="checkbox">-->
     <span class="check-box-wrapper__box"></span>
     <span>78 000 рублей в 1-ый год</span>
   </label>
@@ -9,12 +10,6 @@
 <script>
 export default {
   name: "check-box-wrapper",
-  props: {
-    t: {
-      type: Boolean,
-      default: false
-    }
-  }
 }
 </script>
 
@@ -24,6 +19,8 @@ export default {
   gap: 5px;
   align-items: center;
   cursor: pointer;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #DFE3E6;
   input[type=checkbox] {
     position: absolute;
     width: 1px;

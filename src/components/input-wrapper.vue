@@ -1,14 +1,22 @@
 <template>
   <div class="input-wrapper">
     <div class="input-wrapper__title">Ваша зарплата в месяц</div>
+<!--    <input type="text" class="input">-->
     <slot></slot>
-    <div class="input-wrapper__error">Поле обязательно для заполнения</div>
+    <div class="input-wrapper__error" v-if="error">{{error}}</div>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "input-wrapper"
+  name: "input-wrapper",
+  props: {
+    error: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 
@@ -17,7 +25,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin: 8px 0;
   &__title {
     font-family: $font-medium;
     font-size: 14px;
@@ -39,6 +46,11 @@ export default {
   line-height: 24px;
   padding: 8px 10px;
   outline: none;
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
   cursor: pointer;
   &:blank {
     color: $color-idle;
@@ -58,6 +70,9 @@ export default {
   }
   &--error {
     border: 1px solid $color-warning;
+    &:hover {
+      border: 1px solid $color-warning;
+    }
   }
 }
 </style>
