@@ -1,7 +1,7 @@
 <template>
   <modal-wrapper>
     <div class="modal-tax-deduction">
-      <img src="../../assets/icon/close.svg" alt="" class="modal-tax-deduction__cross">
+      <img src="../../assets/icon/close.svg" alt="" class="modal-tax-deduction__cross" @click="close">
       <p class="modal-tax-deduction__title">Налоговый вычет</p>
       <p class="modal-tax-deduction__subtitle">Используйте налоговый вычет чтобы погасить ипотеку досрочно. Размер
         налогового вычета составляет не более 13%
@@ -38,7 +38,7 @@
           </button>
         </div>
       </div>
-      <button class="btn modal-tax-deduction__btn">Добавить</button>
+      <button class="btn modal-tax-deduction__btn" @click="sendForm">Добавить</button>
     </div>
   </modal-wrapper>
 </template>
@@ -48,16 +48,18 @@ import ModalWrapper from "./modal-wrapper";
 import InputWrapper from "../input-wrapper";
 import CheckBoxWrapper from "../check-box-wrapper";
 import {required} from 'vuelidate/lib/validators'
+import mixinModal from "../../mixins/mixinModal";
 
 export default {
   name: "modal-tax-deduction",
   components: {CheckBoxWrapper, InputWrapper, ModalWrapper},
+  mixins: [mixinModal],
   data() {
     return {
       tagValue: 'payment',
       payday: '',
       homePrice: 2_000_000,
-      deductionAmounts: [78000, 78000]
+      deductionAmounts: []
     }
   },
   computed: {
@@ -76,15 +78,28 @@ export default {
       this.tagValue = str
     },
     calcDeductionAmount() {
-      if (this.payday){
+      this.$v.$touch()
+      if (!this.$v.$invalid){
         const arr = [];
         let maxPayment = this.payday * 12 * 0.13
         let deductionAmount = this.maxDeductionAmount
         for (let i = 0; i < Math.floor(deductionAmount / maxPayment); i++) {
-          arr.push(maxPayment)
+          arr.push(maxPayment.toFixed(2))
         }
-        arr.push(deductionAmount % maxPayment)
+        arr.push((deductionAmount % maxPayment).toFixed(2))
         this.deductionAmounts = arr
+      }
+    },
+    defaultCloseActions() {
+      this.isOpen = false
+      this.tagValue = 'payment'
+      this.payday = ''
+      this.deductionAmounts = []
+    },
+    sendForm() {
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        this.confirm()
       }
     }
   }

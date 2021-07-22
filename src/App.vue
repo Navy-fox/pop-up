@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <portal-target :name="PORTALS.modal"></portal-target>
-    <button class="btn btn--invert">
+    <button class="btn btn--invert" @click="modalTaxDeduction = true">
       Налоговый вычет
     </button>
-    <modal-tax-deduction></modal-tax-deduction>
+    <modal-tax-deduction @close="sucessModalTaxDeduction" v-if="modalTaxDeduction"></modal-tax-deduction>
   </div>
 </template>
 
@@ -18,9 +18,18 @@ export default {
   components: {ModalTaxDeduction},
   data() {
     return {
-      PORTALS: PORTALS
+      PORTALS: PORTALS,
+      modalTaxDeduction: false
     }
   },
+  methods: {
+    sucessModalTaxDeduction(val) {
+      this.modalTaxDeduction = false
+      if (val) {
+        alert('send data')
+      }
+    }
+  }
 }
 </script>
 
