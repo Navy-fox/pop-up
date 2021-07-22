@@ -3,13 +3,19 @@
     <slot></slot>
     <!--    <input type="checkbox">-->
     <span class="check-box-wrapper__box"></span>
-    <span>78 000 рублей в 1-ый год</span>
+    <span>{{text}}</span>
   </label>
 </template>
 
 <script>
 export default {
   name: "check-box-wrapper",
+  props: {
+    text: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 

@@ -12,13 +12,19 @@
         <input type="number" class="input" placeholder="Введите данные" v-model.number="payday" @input="$v.$touch()"
                :class="($v.payday.$dirty && !$v.payday.required) ? 'input--error' : ''">
       </input-wrapper>
-      <p class="btn-text modal-tax-deduction__btn-text">Рассчитать</p>
+      <p class="btn-text modal-tax-deduction__btn-text" @click="calcDeductionAmount">Рассчитать</p>
       <div class="modal-tax-deduction__checkbox">
-        <p>Итого можете внести в качестве досрочных:</p>
-        <check-box-wrapper><input type="checkbox"></check-box-wrapper>
+        <p class="modal-tax-deduction__text">Итого можете внести в качестве досрочных:</p>
+        <check-box-wrapper
+          v-for="(item, key) in deductionAmounts"
+          :key="key"
+          :text="`${item} рублей в ${key + 1}-ый год`"
+        >
+          <input type="checkbox">
+        </check-box-wrapper>
       </div>
       <div class="modal-tax-deduction__tags-box">
-        <p>Что уменьшаем?</p>
+        <p class="modal-tax-deduction__text">Что уменьшаем?</p>
         <div class="modal-tax-deduction__tags">
           <button
             :class="{'btn-tags--active': tagValue === 'payment'}"
@@ -49,7 +55,15 @@ export default {
   data() {
     return {
       tagValue: 'payment',
-      payday: ''
+      payday: '',
+      homePrice: 2_000_000,
+      deductionAmounts: [78000, 78000]
+    }
+  },
+  computed: {
+    maxDeductionAmount(){
+      const result = this.homePrice * 0.13
+      return result > 260_000 ? 260_000 : result
     }
   },
   validations: {
@@ -60,6 +74,18 @@ export default {
   methods: {
     setTagValue(str = '') {
       this.tagValue = str
+    },
+    calcDeductionAmount() {
+      if (this.payday){
+        const arr = [];
+        let maxPayment = this.payday * 12 * 0.13
+        let deductionAmount = this.maxDeductionAmount
+        for (let i = 0; i < Math.floor(deductionAmount / maxPayment); i++) {
+          arr.push(maxPayment)
+        }
+        arr.push(deductionAmount % maxPayment)
+        this.deductionAmounts = arr
+      }
     }
   }
 }
@@ -90,6 +116,7 @@ export default {
   &__btn-text {
     margin-bottom: 16px;
     margin-top: 8px;
+    font-weight: bold;
   }
 
   &__tags-box {
@@ -122,6 +149,12 @@ export default {
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__text{
+    font-weight: bold;
   }
 }
 </style>
