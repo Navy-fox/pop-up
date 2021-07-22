@@ -10,12 +10,10 @@
         :error="($v.payday.$dirty && !$v.payday.required) ? 'Поле обязательно для заполнения' : ''"
       >
         <input
-          type="number"
           class="input"
           placeholder="Введите данные"
-          v-model.number="payday"
           @keydown.enter="calcDeductionAmount"
-          @input="$v.$touch()"
+          @input="inputMask"
           :class="($v.payday.$dirty && !$v.payday.required) ? 'input--error' : ''">
       </input-wrapper>
       <p class="btn-text modal-tax-deduction__btn-text" @click="calcDeductionAmount">Рассчитать</p>
@@ -68,8 +66,11 @@ export default {
       deductionAmounts: [],
       ruble: ['рубль', 'рубля', 'рублей'],
       preposition: ['в', 'во'],
-      suffix: ['-ый', '-ой', '-ий']
+      suffix: ['-ый', '-ой', '-ий'],
     }
+  },
+  watch: {
+
   },
   computed: {
     maxDeductionAmount() {
@@ -83,6 +84,16 @@ export default {
     }
   },
   methods: {
+    inputMask() {
+      const inputElement = document.querySelector('.input')
+
+      const trimValue = String(inputElement.value).replace(/\s/g, '')
+      const spaceValue = String(trimValue).replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')
+      const rubleSymbol = spaceValue.replace(/₽/g,'').replace(/(.*)/,'$1 ₽')
+
+      inputElement.value = rubleSymbol
+    },
+
     setTagValue(str = '') {
       this.tagValue = str
     },
