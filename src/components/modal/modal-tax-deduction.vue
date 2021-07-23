@@ -69,9 +69,7 @@ export default {
       suffix: ['-ый', '-ой', '-ий'],
     }
   },
-  watch: {
-
-  },
+  watch: {},
   computed: {
     maxDeductionAmount() {
       const result = this.homePrice * 0.13
@@ -88,8 +86,8 @@ export default {
       const inputElement = document.querySelector('.input')
 
       const trimValue = String(inputElement.value).replace(/\s/g, '')
-      const spaceValue = String(trimValue).replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')
-      const rubleSymbol = spaceValue.replace(/₽/g,'').replace(/(.*)/,'$1 ₽')
+      const spaceValue = String(trimValue).replace(/(\d)(?=(\d{2})+(\D|$))/g, '$1 ')
+      const rubleSymbol = spaceValue.replace(/₽/g, '').replace(/(.*)/, '$1 ₽')
 
       inputElement.value = rubleSymbol
     },
@@ -149,12 +147,29 @@ export default {
   border-radius: 30px;
   padding: 32px;
   position: relative;
+  @media (max-width: $screen-tablet) {
+    max-width: 450px;
+  }
+  @media (max-width: $screen-mobile) {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+  }
 
   &__title {
     font-family: $font-medium;
     font-size: 28px;
     line-height: 40px;
     margin-bottom: 16px;
+    @media (max-width: $screen-mobile) {
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 
   &__subtitle {
@@ -162,6 +177,10 @@ export default {
     line-height: 24px;
     color: $color-light;
     margin-bottom: 24px;
+    @media (max-width: $screen-mobile) {
+      font-size: 12px;
+      line-height: 16px;
+    }
   }
 
   &__btn-text {
@@ -176,6 +195,11 @@ export default {
     gap: 32px;
     margin-bottom: 40px;
     margin-top: 8px;
+    @media (max-width: $screen-mobile){
+      flex-direction: column;
+      gap: 24px;
+      align-items: start;
+    }
   }
 
   &__tags {
@@ -188,6 +212,12 @@ export default {
     cursor: pointer;
     right: 27px;
     top: 27px;
+    @media (max-width: $screen-mobile) {
+      width: 12px;
+      height: 12px;
+      right: 22px;
+      top: 22px;
+    }
   }
 
   &__btn {

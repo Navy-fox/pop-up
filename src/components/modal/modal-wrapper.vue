@@ -32,6 +32,8 @@ export default {
   flex-direction: column;
   padding-top: 120px;
   overflow-y: auto;
-
+  @media (max-width: $screen-mobile){
+    padding-top: 0;
+  }
 }
 </style>
