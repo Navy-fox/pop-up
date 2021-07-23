@@ -13,7 +13,8 @@
           class="input"
           placeholder="Введите данные"
           @keydown.enter="calcDeductionAmount"
-          @input="inputMask"
+          v-model="payday"
+          v-mask="mask"
           :class="($v.payday.$dirty && !$v.payday.required) ? 'input--error' : ''">
       </input-wrapper>
       <p class="btn-text modal-tax-deduction__btn-text" @click="calcDeductionAmount">Рассчитать</p>
@@ -54,6 +55,8 @@ import CheckBoxWrapper from "../check-box-wrapper";
 import {required} from 'vuelidate/lib/validators'
 import mixinModal from "../../mixins/mixinModal";
 
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 export default {
   name: "modal-tax-deduction",
   components: {CheckBoxWrapper, InputWrapper, ModalWrapper},
@@ -67,9 +70,13 @@ export default {
       ruble: ['рубль', 'рубля', 'рублей'],
       preposition: ['в', 'во'],
       suffix: ['-ый', '-ой', '-ий'],
+      mask: createNumberMask({
+        prefix: '',
+        suffix: ' ₽',
+        thousandsSeparatorSymbol: ' '
+      }),
     }
   },
-  watch: {},
   computed: {
     maxDeductionAmount() {
       const result = this.homePrice * 0.13
@@ -82,16 +89,6 @@ export default {
     }
   },
   methods: {
-    inputMask() {
-      const inputElement = document.querySelector('.input')
-
-      const trimValue = String(inputElement.value).replace(/\s/g, '')
-      const spaceValue = String(trimValue).replace(/(\d)(?=(\d{2})+(\D|$))/g, '$1 ')
-      const rubleSymbol = spaceValue.replace(/₽/g, '').replace(/(.*)/, '$1 ₽')
-
-      inputElement.value = rubleSymbol
-    },
-
     setTagValue(str = '') {
       this.tagValue = str
     },
@@ -195,7 +192,7 @@ export default {
     gap: 32px;
     margin-bottom: 40px;
     margin-top: 8px;
-    @media (max-width: $screen-mobile){
+    @media (max-width: $screen-mobile) {
       flex-direction: column;
       gap: 24px;
       align-items: start;
@@ -223,6 +220,9 @@ export default {
   &__btn {
     width: 100%;
     display: block;
+    @media (max-width: $screen-mobile) {
+      margin-top: auto;
+    }
   }
 
   &__checkbox {

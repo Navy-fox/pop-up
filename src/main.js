@@ -5,6 +5,9 @@ import PortalVue from 'portal-vue'
 Vue.use(PortalVue)
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
+// As a plugin
+import VueMask from 'v-mask'
+Vue.use(VueMask);
 
 Vue.config.productionTip = false
 
